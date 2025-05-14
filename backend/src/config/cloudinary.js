@@ -1,4 +1,7 @@
 import {v2 as cloundinary} from 'cloudinary'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 cloundinary.config({
     cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
