@@ -23,6 +23,6 @@ export const requireAdmin = async (req, res, next) => {
     next();
   } catch (error) {
     console.log("Error while checking admin", error);
-    return res.status(403).json({ message: "Error while checking admin" });
+    next(error)
   }
 };
