@@ -74,3 +74,27 @@ export const deleteSong = async (req,res,next)=>{
         next(error)
     }
 }
+
+export const createAlbum = async (req,res,next)=>{
+    try {
+        const {title, artist, releasYear} = req.body
+        const {imageFile} = req.files
+
+        const imageURL = await uploadToCloudinary(imageFile)
+
+        const album = new Album({
+            title,
+            artist,
+            releasYear,
+            imageURL
+        })
+        
+        await album.save()
+
+        res.status(201).json(album)
+    } catch (error) {
+        console.log("Error in create album", error);
+        next(error)
+    }
+}
+
