@@ -58,8 +58,24 @@ export const getTrendingSongs = async (req,resizeBy,next)=>{
 }
 
 export const getMadeForYouSongs = async (req,resizeBy,next)=>{
-    try {
-        
+     try {
+        const songs = await Song.aggregate([
+            {
+                $sample:{size:4}
+            },
+            {
+                $project:{
+                    _id:1,
+                    title:1,
+                    artist:1,
+                    imageURL:1,
+                    audioURL:1,
+                    imageUrl:1
+                }
+            }
+        ])
+
+        res.json(songs)
     } catch (error) {
         next(error)
     }
