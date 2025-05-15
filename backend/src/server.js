@@ -38,6 +38,18 @@ app.use("/api/songs", SongsRouter);
 app.use("/api/albums", AlbumRouter);
 app.use("/api/stats", StatsRouter);
 
+app.use((err, req, res, next) => {
+  console.log(err);
+  res
+    .status(400)
+    .json({
+      message:
+        process.env.Node_ENV == "producation"
+          ? "Internal Server error"
+          : err.message,
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
