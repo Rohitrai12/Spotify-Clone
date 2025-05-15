@@ -7,5 +7,6 @@ const AdminRouter = Router()
 AdminRouter.post("/", protectRoute, requireAdmin, createSong)
 AdminRouter.delete("/songs/:id", protectRoute, requireAdmin, deleteSong)
 AdminRouter.post("/album", protectRoute, requireAdmin, createAlbum)
+AdminRouter.delete("/album/:id", protectRoute, requireAdmin, deleteAlbum)
 
 export default AdminRouter
