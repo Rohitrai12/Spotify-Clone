@@ -14,8 +14,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
-}, {timeseries:true});
+}, {
+  timestamps: true, // ✅ This adds createdAt and updatedAt fields
+});
 
-const User = mongoose.model("user", userSchema)
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
-export default User
+export default User;
